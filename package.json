@@ -1,0 +1,27 @@
+{
+  "name": "hackathon",
+  "version": "1.0.0",
+  "description": "### description",
+  "main": "sphero-control.js",
+  "dependencies": {
+    "cylon": "^1.2.0",
+    "express": "^4.13.4",
+    "sphero": "^0.8.3",
+    "serialport": "^2.0.6",
+    "cylon-sphero": "^0.23.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DevinMui/acecodeday.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DevinMui/acecodeday/issues"
+  },
+  "homepage": "https://github.com/DevinMui/acecodeday#readme"
+}
