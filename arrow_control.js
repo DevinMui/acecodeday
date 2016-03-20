@@ -1,49 +1,44 @@
-var sphero = require("sphero"),
-    bb8 = sphero("/dev/tty.Sphero-PWR-AMP-SPP"); // change BLE address accordingly
+//var sphero = require("sphero"),
+//    bb8 = sphero("/dev/tty.Sphero-PWR-AMP-SPP"); // change BLE address accordingly
 
 var express = require('express')
-
-var app = express();
-
-var direction = "stop"
-
-app.get('/left', function (req, res) {
-  res.send('left');
-  direction = 'left'
-});
-
-app.get('/right', function (req, res) {
-  res.send('right');
-  direction = 'right'
-});
-
-app.get('/forward', function (req, res) {
-  res.send('forward');
-  direction = 'forward'
-});
-
-app.get('/backward', function (req, res) {
-  res.send('backward');
-  direction = 'backward'
-});
-
-app.get('/stop', function (req, res) {
-  res.send('stop');
-  direction = 'stop'
-});
-
-app.get('/kill', function(res, req){
-	res.send('kill sphero')
-	direction = 'kill'
-})
+var app = express()
 
 app.listen(3000, function () {
   console.log('port 3000');
 });
 
-// sphero
 
-bb8.connect(function() {
+app.get('/', function(req, res){
+	res.sendfile('index.html')
+})
+
+app.get('/left', function (req, res) {
+  res.send('left');
+  console.log('left')
+});
+
+app.get('/right', function (req, res) {
+  res.send('right');
+  console.log('right')
+});
+
+app.get('/forward', function (req, res) {
+  res.send('forward');
+  console.log('forward')
+});
+
+app.get('/backward', function (req, res) {
+  res.send('backward');
+  console.log('backward')
+});
+
+app.get('/stop', function (req, res) {
+  res.send('stop');
+});
+
+
+/*bb8.connect(function() {
   // roll BB-8 in a random direction, changing direction every second
   setInterval(function() {
   	if(direction === 'stop'){
@@ -69,4 +64,4 @@ bb8.connect(function() {
   		clearInterval()
   	}
   }, 1000);
-});
+});*/

@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+<head>
+	<title>Sphero Web Browser Control</title>
+</head>
+<body>
+	<h1>Use your arrow keys to move Sphero!</h1>
+	<script
+			  src="https://code.jquery.com/jquery-2.2.2.min.js"
+			  integrity="sha256-36cp2Co+/62rEAAYHLmRCPIych47CvdM+uTBJwSzWjI="
+			  crossorigin="anonymous"></script>
+	<script>
+		document.onkeydown = checkKey;
+
+		function checkKey(e) {
+
+		    e = e || window.event;
+
+		    if (e.keyCode == '38') {
+		      $.get('./forward')
+		    }
+		    else if (e.keyCode == '40') {
+		      $.get('./backward')
+		    }
+		    else if (e.keyCode == '37') {
+		       $.get('./left')
+		    }
+		    else if (e.keyCode == '39') {
+		       $.get('./right')
+		    }
+
+		}
+	</script>
+</body>
+</html>
