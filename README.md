@@ -1,33 +1,29 @@
-# idk
+# CamRoll
 
-### description
+### Description
 
-formula for distance:
+CamRoll is a few scripts that allow users to take control of the Sphero by controlling it with your hands and using computer vision.
 
-Distance of object= (Size of object * 360)/(2 * 3.14 * Angular size in degree)
+### Dependencies
 
-https://github.com/vipul-sharma20/gesture-opencv/blob/master/gesture.py // might be helpful
+You will need:
 
-### How i might do distance
+* OpenCV
+* Python OpenCV
+* Python 2
+* node.js
+* npm
+* Linux skills
 
-size = area of object
+### Downloading
 
-area = w * h
+1. Git it! `git clone https://www.github.com/devinmui/acecoding.git`
+2. `cd acecoding/`
+3. `cp *.xml /path/to/opencv/haarcascades/`
+4. Install node dependencies: `npm install`
+5. Run node express server: `node sphero-control.js` (may take multiple tries)
+6. Run python opencv code: `python record.py`
 
-initial capture get palm size and fist area
+### Arrow key control
 
-do the distance object formula
-
-### How to do movement
-
-use pyinput or something
-
-### Alternative idea
-
-use cv to control the sphero via python lib bluetooth?
-
-Otherwise jacking the bluetooth signal from Mac and sending out other bluetooth signals to it causing it to go, stop, speed up, go to the right, go to the left, etc
-
-### Notes
-
-for some reason, the xml for palms does not work very well. It works mainly at a farther range. That's ok but not as practical. Fists however works in almost any circumstances. Very reliable
+Instead of executing steps 5 - 6, execute `node arrow_control.js`
