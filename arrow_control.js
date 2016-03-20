@@ -1,5 +1,5 @@
-var sphero = require("sphero"),
-    bb8 = sphero("/dev/tty.Sphero-PWR-AMP-SPP"); // change BLE address accordingly
+/*var sphero = require("sphero"),
+    bb8 = sphero("/dev/tty.Sphero-PWR-AMP-SPP"); // change BLE address accordingly*/
 
 var express = require('express')
 var app = express()
@@ -43,7 +43,7 @@ app.get('/stop', function (req, res) {
 });
 
 
-bb8.connect(function() {
+/*bb8.connect(function() {
   // roll BB-8 in a random direction, changing direction every second
   setInterval(function() {
   	if(direction === 'stop'){
@@ -73,4 +73,4 @@ bb8.connect(function() {
   		clearInterval()
   	}
   }, 500);
-});
+});*/
