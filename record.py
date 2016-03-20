@@ -39,29 +39,33 @@ while True:
 	# detect palms and fists
 	for x,y,w,h in palms: # typically, < 5000 is a false positive
 		if w * h < 2500:
-			print "probably a false positive"
+			#print "probably a false positive"
+			print
 		else:
 			last_x = x
+			print x
 			cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
 			if init_palm_area == 0: # set the init area for comparisons later
 				init_palm_area = w * h
 			else:
-				print "PALM AREA: " + str(w*h)
+				#print "PALM AREA: " + str(w*h)
 				palm_area = w * h
 				detected = True
-			print "PALM"
+			#print "PALM"
 
 	for x,y,w,h in fists:
+		last_x = x
+		print x
 		cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
 		number_of_fists = number_of_fists + 1
 		if init_fist_area == 0: # set the init area for comparisons later
 			init_fist_area = w * h
 		else:
-			print "FIST AREA: " + str(w*h)
+			#print "FIST AREA: " + str(w*h)
 			fist_area = w * h
 			detected = True
 
-		print "FIST"
+		#print "FIST"
 
 	# for these actions, we will need a specific zone
 	# or range for the equal so that it is not hard to stop moving
@@ -72,30 +76,36 @@ while True:
 		if fist_area != 0:
 
 			if last_x > half_width + 300: # right but probably reversed
-					r = requests.get(url + '/left')
-				elif last_x < half_width - 300: # left but probably reversed
-					r = requests.get(url + '/right')
+				r = requests.get(url + '/left')
+				print "LEFT"
+			elif last_x < half_width - 300: # left but probably reversed
+				r = requests.get(url + '/right')
+				print "RIGHT"
+			else:
+				r = requests.get(url + '/stop')
+				print "STOP"
+				if fist_area > init_fist_area + 2500:
+					#print "greater"
+					#r = requests.get(url + '/forward')
+					print "FORWARD"
+				elif fist_area < init_fist_area - 2500:
+					#print "less than"
+					r = requests.get(url + '/backward')
+					print "BACKWARD"
 				else:
-					r = requests.get(url + '/stop')
-					if fist_area > init_fist_area + 2500:
-						print "greater"
-						r = requests.get(url + '/forward')
-					elif fist_area < init_fist_area - 2500:
-						print "less than"
-						r = requests.get(url + '/backward')
-					else:
-						print "equal"
+					#print "equal"
+					print
 
 
 		# probably not do anything for this
-		elif palm_area != 0:
+		'''elif palm_area != 0:
 			if last_x > half_width: # right but probably reversed
 				r = requests.get(url + '/left')
 			elif last_x < half_width: # left but probably reversed
 				r = requests.get(url + '/right')
 			else:
 				r = requests.get(url + '/stop')
-			print "something"
+			#print "something"'''
 	else:
 		r = requests.get(url + '/stop')
 		print "nothing detected :("
